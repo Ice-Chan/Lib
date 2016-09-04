@@ -15,11 +15,14 @@ require 'kconv'
 #************************
 def nowPlaying?(status)
 	text = status.text
-	name = "Astrisk_"
-	puts $cfg.admin
+	name = status.user.screen_name
 
 	if name != $cfg.screen_name && text =~ /Current|CurrentTrack|CurrentMusic|--current|--nowplaying|nowPlaying|なうぷれ|iTunes|あいちゅーん|なう|now|曲|music|再生|play|played/ 
-	    return true
+		if name == $cfg.admin #権限ガバガバを回避
+	    	return true
+		else 
+			return false
+		end
 	else
 	    return false
 	end
