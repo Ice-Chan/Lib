@@ -36,13 +36,12 @@ client_docomoru = Docomoru::Client.new(api_key: $cfg.docomo_api)
 flag = true
 $update_name_lock = false
 
-  #client.update_profile(name: $cfg.default_name)
-  client.update($ver + "\n" + Time.now.to_s)
+#client.update_profile(name: $cfg.default_name)
+client.update($ver + "\n" + Time.now.to_s)
 
-  # streaming
-  begin
-    streaming(client, client_strm, client_docomoru, flag)
-  rescue
-    retry
-  end
+# streaming
+begin
+  streaming(client, client_strm, client_docomoru, flag)
+rescue
+  retry
 end
